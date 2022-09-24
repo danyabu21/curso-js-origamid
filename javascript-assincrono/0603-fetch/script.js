@@ -2,14 +2,6 @@
 // crie um formulário onde o usuário pode digitar o cep
 // e o endereço completo é retornado ao clicar em buscar
 
-// Utilizando a API https://blockchain.info/ticker
-// retorne no DOM o valor de compra da bitcoin and reais.
-// atualize este valor a cada 30s
-
-// Utilizando a API https://api.chucknorris.io/jokes/random
-// retorne uma piada randomica do chucknorris, toda vez que
-// clicar em próxima
-
 const cepInput = document.querySelector(".cep");
 const cepBtn = document.querySelector(".btn-cep");
 const enderecoContainer = document.querySelector(".endereco");
@@ -39,9 +31,8 @@ cepBtn.addEventListener("click", enviarCEP);
 // retorne no DOM o valor de compra da bitcoin and reais.
 // atualize este valor a cada 30s
 
-setInterval(() => {
-  const valorBitcoin = fetch("https://blockchain.info/ticker");
-  valorBitcoin.then((response) => {
+function fetchBTC() {
+  fetch("https://blockchain.info/ticker").then((response) => {
     response.json().then((valor) => {
       const outputBitcoinValor = document.querySelector(".bitcoin-valor");
       outputBitcoinValor.innerText = valor.BRL.buy.toLocaleString("pt-BR", {
@@ -50,4 +41,28 @@ setInterval(() => {
       });
     });
   });
-}, 1000);
+}
+
+fetchBTC();
+
+// setInterval(fetchBTC, 30000);
+
+// Utilizando a API https://api.chucknorris.io/jokes/random
+// retorne uma piada randomica do chucknorris, toda vez que
+// clicar em próxima
+
+const joke = document.querySelector(".title-joke");
+const btnNext = document.querySelector(".norris-jokes button");
+
+joke.style.marginTop = "5rem";
+function norrisJokes() {
+  fetch("https://api.chucknorris.io/jokes/random").then((response) =>
+    response.json().then((body) => {
+      joke.innerText = body.value;
+    })
+  );
+}
+
+norrisJokes();
+
+btnNext.addEventListener("click", norrisJokes);
