@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "Playstation 5",
+    "preco": "R$4399",
+    "cor": "Branco",
+    "jogos": ["TLOU2", "GOW Ragnarok", "Ghost of Tsushima"]
+  },
+  {
+    "nome": "Xbox SX",
+    "preco": "R$4099",
+    "cor": "Preto",
+    "jogos": ["Forza Motosport", "Forza Horizon", "MS Fly Simulator"]
+  }
+]
